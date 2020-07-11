@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.page.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.page.bean.Role" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="Role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="Role_note" property="roleNote" jdbcType="VARCHAR" />
+    <result column="Role_number" property="roleNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.page.bean.Role" >
+    insert into t_role (id, Role_name, Role_note, 
+      Role_number)
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleNote,jdbcType=VARCHAR}, 
+      #{roleNumber,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.page.bean.Role" >
+    update t_role
+    set Role_name = #{roleName,jdbcType=VARCHAR},
+      Role_note = #{roleNote,jdbcType=VARCHAR},
+      Role_number = #{roleNumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, Role_name, Role_note, Role_number
+    from t_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, Role_name, Role_note, Role_number
+    from t_role
+  </select>
+
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!--
+       2. setting 包含很多重要的设置项
+       setting：用来设置每一个设置项
+        name : 设置项名
+        value ： 设置项取消
+       -->
+    <!--<settings>-->
+        <!--&lt;!&ndash;具体说明可以看手册 &ndash;&gt;-->
+        <!--&lt;!&ndash;驼峰式&ndash;&gt;-->
+        <!--&lt;!&ndash;<setting name="mapUnderscoreToCamelCase" value="true"/>&ndash;&gt;-->
+    <!--</settings>-->
+    <settings>
+        <!--显示的指定每个我们需要更改的配置的，防止更新，出现错误-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <!--4. environment ： 环境，mybatis可以配置多种环境
+            environment ： 配置一个具体的环境信息，必须有两个标签，id 代表当前环境的唯一标识 ，default指定使用某种环境，可以达到快速切换环境
+             transactionManager :  事务管理器
+             type ： 事务管理器的类型  ;JDBC和MANAGED
+                    也可以自定义事务管理器：实现 TransactionFactory接口，type 指定全类名、
+             dataSource ：数据源；
+                        type ：数据源类型；UNPOOLED|POOLED|JNDI
+                            自定义数据源，实现DataSourceFactory接口，type是全类名-->
+    <environments default="development">
+        <environment id="test">
+            <transactionManager type=""></transactionManager>
+            <dataSource type=""></dataSource>
+        </environment>
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--5.databaseIdProvide 支持多种数据库厂商
+            type = "DB_VENDOR", VendorDatabaseIdProvider
+                作用就是得到数据库厂商的标识(驱动getDatabaseProductName)，mybatis就是根据数据库厂商来标记不同的sql-->
+
+    <databaseIdProvider type="DB_VENDOR">
+        <!--为不同的数据库厂商起别名-->
+        <property name="MySQL" value="mysql"/>
+        <property name="Oracle" value="oracle"/>
+        <property name="SQL Server" value="sqlserver"/>
+    </databaseIdProvider>
+
+</configuration>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.EmployeeMapper">
+
+    <!--namespace : 名称空间 ； 指定为接口的全类名(接口为名称空间的动态绑定)
+        id : 唯一标识
+        resultType ： 返回值类型
+        #{id} : 从专递过来的参数中取出id值
+        public Employee getEmpById(Integer id);
+        -->
+    <!--尽量bean里面的属性与数据表中的字段一致，当不一致的情况出现，可以在sql映射文件中添加别名，-->
+    <select id="getEmpById" resultType="com.Employee">
+select id,last_name lastName,email,gender from tb1_employee where id = #{id}
+</select>
+</mapper>

@@ -1,0 +1,41 @@
+1.向数据表中插入一条Student记录
+  ##ResultSetMetaData
+  1) what :是描述Resultset 的元数据对象，即从中可以或许得到结果集中有多少列，列名是什么
+  2） 得到ResultsetSetMetData对象，调用Resultset 的 getMetData 方法
+        ResultsetSetMedata 有哪些好用的方法：
+            int getColumnCount ： SQL包括哪些的方法
+2.使用PreparedStatement
+
+1） 使用statement 需要拼写sql语句，容易出错
+2)使用PReparedStatement 是 statement的子接口，可以传入带占位符的sql语句并且提供了补充占位符变量的方法
+    a.创建PreparedStatement
+
+    PreparedStatement ps = conn.preparedStatement(sql)
+
+    b.调动PreparedStatement 的setXXX方法（int index，onject var） 设置占位符的值
+    c。执行SQL语句：executeQuery 或executeupdate  注意，执行时不需要再传入sql语句
+String sql = "Insert into examstudent values(?,?,?,?,?,?,?)"
+
+    ##可以有效的禁止sql注入利用PreparedStatement就可以了
+
+1） 新建一个Student，对应examStudents 数据表
+
+int flaowid
+int type
+String idCard
+String examCard
+String studentName
+String location
+int grade
+2）在测试方法testAddStudent 中
+    //1.获取从控制台输入的Student 对象
+    Student student = getstudnetFromConsole()；
+    //2.调用addStudent 方法执行插入操作
+3）新建一个方法：void addStudent（Student student）
+把参数student 对象插入到数据库中
+addStudent(Student student){
+    //1.准备一条sql 语句
+    String sql= 'insert into examstudent values(student.getFlowID and so on)'
+
+    //2.调用testJdbc 的UPDATE方法插入操作
+}

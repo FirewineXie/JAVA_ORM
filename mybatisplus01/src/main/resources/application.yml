@@ -1,0 +1,19 @@
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+# mybatis-plus 的设置
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+
+
+# Logger Config
+logging:
+  level:
+    com.baomidou.mybatisplus.samples: debug
+# MyBatis-Plus 配置该演示无
